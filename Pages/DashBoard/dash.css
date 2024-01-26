@@ -1,0 +1,45 @@
+html, body {
+    background: linear-gradient(to bottom, #D5702A 80%, #eae8da 130%);
+    margin: 0;
+    padding: 0;
+}
+
+/* Additional styling for the whole page */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* CSS for animation */
+@keyframes fadeInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to the elements with different delays */
+.p-4 {
+    animation: fadeInFromBottom 1.5s ease-in-out;
+}
+
+.img-fluid{
+        animation: fadeInFromBottom 1.5s ease-in-out;
+
+}
+
+.login{
+    animation: fadeInFromBottom 1.5s ease-in-out;
+
+}
+
+

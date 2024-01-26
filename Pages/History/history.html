@@ -23,10 +23,15 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     
   </head>
 
   <body style="background: url()">
+
+
+    
     <!-- NavBar -->
 
     <div class="container-fluid">
@@ -53,38 +58,66 @@
 
     <!-- NavBar -->
 
+    
+    <!-- Chart -->
+
+    <div class="container">
+        <div class="row mb-3 d-flex justify-content-center">
+            <div style="width: 23%;" class="col-2 d-flex justify-content-center">
+                <canvas id="myDoughnutChart"></canvas>
+            </div>
+        </div>
+
+    <!-- Chart -->
+
     <!-- Table -->
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-      
+    <div class="container mt-5">
+        <div class="table-responsive">
+            <table class="table shadow">
+                <thead class="table-warning">
+                    <tr>
+                        <th scope="col-3">User</th>
+                        <th scope="col-3">Date</th>
+                        <th scope="col-3">Checked Nic</th>
+                        <th scope="col-3">Birthday</th>
+                        <th scope="col-3">Gender</th>
+                        <th scope="col-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>12/06/2024</td>
+                        <td>200216404418</td>
+                        <td scope="col-3">2002-06-12</td>
+                        <td>Female</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>12/06/2024</td>
+                        <td>200216404418</td>
+                        <td scope="col-3">2002-06-12</td>
+                        <td>Male</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>12/06/2024</td>
+                        <td>200216404418</td>
+                        <td scope="col-3">2002-06-12</td>
+                        <td>Male</td>
+                        <td>Active</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    
+
 
     <!-- Table -->
 
@@ -95,6 +128,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
   </body>
 </html>

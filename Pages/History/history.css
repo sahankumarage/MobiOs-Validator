@@ -1,0 +1,16 @@
+html, body {
+    background: linear-gradient(to bottom, #D5702A 80%, #eae8da 130%);
+    margin: 0;
+    padding: 0;
+}
+
+/* Additional styling for the whole page */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}

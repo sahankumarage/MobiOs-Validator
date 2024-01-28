@@ -1,21 +1,23 @@
-const data = {
+// Define initial doughnut chart data
+const chartData = {
     datasets: [{
         label: 'My First Dataset',
-        data: [300, 100],
-        backgroundColor: ['#f61c09', '#78cd32'],
+        data: [0, 0], // Initialize with 0 counts
+        backgroundColor: ['#78cd32', '#f61c09'],
         hoverOffset: 4,
     }],
 };
 
-const config = {
+// Create the initial chart
+const chartConfig = {
     type: 'doughnut',
-    data: data,
+    data: chartData,
 };
 
-const ctx = document.getElementById('myDoughnutChart').getContext('2d');
-new Chart(ctx, config);
+const chartCtx = document.getElementById('myDoughnutChart').getContext('2d');
+const doughnutChart = new Chart(chartCtx, chartConfig);
 
-
+// Fetch data from the API
 fetch('http://localhost:8080/nic/nics')
     .then(response => {
         if (!response.ok) {
@@ -26,20 +28,21 @@ fetch('http://localhost:8080/nic/nics')
     .then(data => {
         // Populate the table with data
         populateTable(data);
+
+        // Update doughnut chart with total counts
+        updateDoughnutChart(data);
     })
     .catch(error => {
         console.error('Error:', error);
     });
 
 function populateTable(data) {
-    // Get the table body element
     const tableBody = document.getElementById('nicTableBody');
 
-    // Iterate over the data and create table rows
     data.forEach(item => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${item.checkedNic}</td>
+            <td>${item.checkedId}</td>
             <td>${item.birthday}</td>
             <td>${item.gender}</td>
             <td>${item.status}</td>
@@ -48,3 +51,11 @@ function populateTable(data) {
     });
 }
 
+function updateDoughnutChart(data) {
+    const activeCount = data.filter(item => item.status === '🟢 Active').length;
+    const inactiveCount = data.filter(item => item.status === '🔴 Deactivate').length;
+
+    doughnutChart.data.datasets[0].data = [activeCount, inactiveCount];
+
+    doughnutChart.update();
+}

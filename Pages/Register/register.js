@@ -105,3 +105,9 @@ function dashPage() {
         window.location.href = "../DashBoard/dash.html";
     }, 2000);
 }
+
+let cancel = document.getElementById("cancel");
+
+cancel.addEventListener("click", function(){
+    window.location.href = "../DashBoard/dash.html";
+})

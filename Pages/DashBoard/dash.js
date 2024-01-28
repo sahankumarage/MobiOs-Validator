@@ -19,7 +19,8 @@ fetch('http://localhost:8080/User/users')
                 }
             }
             if (found) {
-                alert("Login Successfully!!");
+                successAlert();
+                validatePage();
             } else {
                 Erroralert();
                 clearField();
@@ -43,7 +44,7 @@ function Erroralert() {
 
     Swal.fire({
         icon: "error",
-        title: "Please Enter a Valid Username Password.",
+        title: "Please Enter a Valid Username and Password.",
 
     });
 }
@@ -60,9 +61,16 @@ function successAlert() {
     Swal.fire({
         position: "top-center",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Login Succeeded",
         showConfirmButton: false,
         timer: 1500
     });
 }
 
+
+function validatePage() {
+    // Redirect to the Validator page after a delay of 1000 milliseconds (1 second)
+    setTimeout(function () {
+        window.location.href = "../Validator/vali.html";
+    }, 2000);
+}

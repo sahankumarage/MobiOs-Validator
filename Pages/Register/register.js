@@ -19,6 +19,7 @@ registerBtn.addEventListener('click', function () {
         registerUser();
         successAlert();
         clear();
+        dashPage();
     } else {
         errorAlert();
     }
@@ -97,4 +98,10 @@ function errorAlert(){
         focusConfirm: false,
         
       });
+}
+
+function dashPage() {
+    setTimeout(function () {
+        window.location.href = "../DashBoard/dash.html";
+    }, 2000);
 }

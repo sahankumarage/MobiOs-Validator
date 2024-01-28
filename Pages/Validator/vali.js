@@ -18,14 +18,14 @@ var d_array = [
 
 
 
-$('.nic-validate-btn').click(function() {
-    
+$('.nic-validate-btn').click(function () {
+
     $('.nic-validate-error').html('');
     $('.nic-birthday').html('');
     $('.nic-gender').html('');
     var nicNumber = $('.nic-validate').val();
     if (validation(nicNumber)) {
-        
+
         console.log(nicNumber);
         var extracttedData = extractData(nicNumber);
         var days = extracttedData.dayList;
@@ -42,10 +42,66 @@ $('.nic-validate-btn').click(function() {
         $('.nic-gender').html('Gender:' + gender);
         correctAlert(gender, birthday);
 
+        let status = validation(nicNumber) ? "🟢 Active" : "🔴 Deactivate";
+
+        let formData = {
+            checkedId: nicNumber,
+            gender: gender,
+            birthday: birthday,
+            status: status
+        };
+
+        fetch("http://localhost:8080/nic/validate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Success:", data);
+                // Handle success, if needed
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                // Handle error, if needed
+            });
+
+
+
+
+
     } else {
         $('.nic-validate-error').html('You Entered NIC Number Is wrong');
+        let status = validation(nicNumber) ? "🟢 Active" : "🔴 Deactivate";
+
+        let formData = {
+            checkedId: nicNumber,
+            gender: "Undefined",
+            birthday: "Undefined",
+            status: status
+        };
+
+        fetch("http://localhost:8080/nic/validate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .catch(error => {
+                console.error("Error:", error);
+                // Handle error, if needed
+            });
+
         Erroralert();
-    } 
+    }
 });
 
 
@@ -117,13 +173,13 @@ function getFormattedDate(date) {
 }
 
 
-function Erroralert(){
+function Erroralert() {
 
     Swal.fire({
         icon: "error",
         title: "Please Enter a Valid ID Number.",
-        
-      });
+
+    });
 }
 
 function correctAlert(gender, birthday) {
@@ -136,3 +192,7 @@ function correctAlert(gender, birthday) {
         confirmButtonText: `<i class="fa fa-thumbs-up"></i> Great!`,
     });
 }
+
+
+//PostNICData
+
